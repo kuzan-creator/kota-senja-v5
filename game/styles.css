@@ -1,0 +1,97 @@
+/* Kota Senja v5 — HUD gelap + aksen emas/oranye, font besar, terbaca di 768px. */
+html, body { margin: 0; height: 100%; overflow: hidden; background: #14102e; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+[hidden] { display: none !important; }
+#game { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+#status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+#hud { position: fixed; inset: 0; pointer-events: none; color: #eef1f5; z-index: 5; }
+.panel { background: rgba(16, 18, 38, 0.88); border: 2px solid #f2a93a; border-radius: 10px; padding: 10px 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.5); }
+
+#mission-banner { position: absolute; top: 12px; left: 12px; width: 430px; }
+#mission-name { color: #f2c230; font-weight: 800; font-size: 19px; letter-spacing: 0.5px; }
+#mission-obj { font-size: 15px; color: #dfe3ee; margin-top: 3px; white-space: pre-line; line-height: 1.35; }
+.stage-row { display: flex; align-items: center; gap: 8px; margin-top: 7px; }
+#stage-label { color: #ffd23a; font-weight: 700; font-size: 14px; white-space: nowrap; }
+#stage-timer { color: #ff8a5a; font-weight: 800; font-size: 16px; }
+.bar { flex: 1; height: 10px; background: #2a2f45; border-radius: 5px; overflow: hidden; }
+.bar > div { height: 100%; background: #f2c230; width: 0%; }
+
+#status-panel { position: absolute; top: 12px; right: 12px; width: 300px; text-align: right; }
+.status-top { display: flex; justify-content: flex-end; gap: 14px; }
+#clock { font-size: 24px; font-weight: 800; }
+#money { font-size: 24px; font-weight: 800; color: #7ae87a; }
+#wanted { font-size: 15px; margin-top: 2px; color: #ffb3b3; letter-spacing: 1px; }
+#respect-label { font-size: 14px; color: #ffd23a; margin-top: 4px; }
+#status-panel .bar { margin-top: 4px; }
+#air-note { color: #ff6a5a; font-weight: 700; font-size: 13px; margin-top: 5px; }
+
+#dispatch-panel { position: absolute; top: 150px; right: 12px; width: 300px; }
+.panel-title { color: #f2a93a; font-weight: 800; font-size: 14px; margin-bottom: 6px; letter-spacing: 0.5px; }
+.dispatch-row { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.dispatch-role { color: #ffd23a; }
+.dispatch-note { color: #ff6a5a; font-size: 13px; font-weight: 700; margin-top: 5px; }
+
+#crew-cards { position: absolute; top: 352px; right: 12px; width: 300px; display: flex; flex-direction: column; gap: 8px; }
+.crew-card { position: relative; display: flex; gap: 10px; align-items: center; background: rgba(16,18,38,0.88); border: 2px solid #f2a93a; border-radius: 10px; padding: 8px 10px; }
+.crew-portrait { width: 44px; height: 44px; border-radius: 50%; background: #2e5ec2; color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; border: 2px solid #ffd23a; }
+.crew-name { font-weight: 700; font-size: 14px; }
+.crew-role { color: #ffd23a; font-size: 13px; }
+.crew-desc { color: #b9becd; font-size: 12px; }
+.crew-key { margin-left: auto; border: 2px solid #7ae87a; color: #7ae87a; border-radius: 6px; padding: 2px 7px; font-weight: 800; }
+.crew-cd { position: absolute; right: 8px; bottom: 6px; background: #c22e2e; color: #fff; font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: 6px; }
+.crew-card.cooling { opacity: 0.75; }
+
+#vitals { position: absolute; left: 12px; bottom: 12px; width: 210px; }
+#district { color: #ffd23a; font-weight: 800; font-size: 16px; margin-bottom: 6px; }
+.vital-row { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-top: 4px; }
+.vital-row .bar { height: 9px; }
+#health-bar { background: #4ae87a; }
+#armour-bar { background: #4a9ae8; }
+#minimap { margin-top: 8px; border: 2px solid #3a3f5a; border-radius: 6px; width: 170px; height: 170px; }
+
+#vehicle-panel { position: absolute; right: 12px; bottom: 12px; width: 300px; text-align: right; }
+#weapon-slots { display: flex; gap: 6px; justify-content: flex-end; margin-bottom: 8px; }
+.weapon-slot { width: 46px; border: 2px solid #3a3f5a; border-radius: 8px; padding: 5px 2px; text-align: center; background: rgba(20,22,44,0.9); }
+.weapon-slot.active { border-color: #ffd23a; background: #3a2f10; }
+.weapon-slot.locked { opacity: 0.45; }
+.wslot-num { font-size: 10px; color: #8b93a3; }
+.wslot-name { font-size: 12px; font-weight: 700; }
+.wslot-ammo { font-size: 11px; color: #ffd23a; }
+#vehicle-name { color: #ffd23a; font-weight: 800; font-size: 15px; }
+#vehicle-speed { font-size: 30px; font-weight: 800; }
+#radio-name { font-size: 13px; color: #b9becd; }
+
+#dialogue { position: absolute; left: 50%; transform: translateX(-50%); bottom: 14px; width: 520px; display: flex; gap: 12px; align-items: center; }
+#dialogue-portrait { width: 52px; height: 52px; border-radius: 50%; background: #2e5ec2; color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid #ffd23a; flex-shrink: 0; }
+#dialogue-name { color: #ffd23a; font-weight: 800; font-size: 14px; }
+#dialogue-text { font-size: 15px; font-style: italic; line-height: 1.35; }
+
+#prompt { position: absolute; left: 50%; bottom: 180px; transform: translateX(-50%); background: #f2a93a; color: #1a1a22; font-weight: 800; border: none; }
+#toast { position: absolute; left: 50%; top: 46%; transform: translateX(-50%); background: rgba(16,18,38,0.92); font-weight: 700; }
+
+.overlay { position: fixed; inset: 0; background: rgba(10, 8, 24, 0.72); display: flex; align-items: center; justify-content: center; z-index: 20; }
+#wheel { background: rgba(10, 8, 24, 0.45); }
+.overlay-box { background: #181c30; border: 2px solid #f2a93a; border-radius: 14px; padding: 26px 30px; color: #eef1f5; text-align: center; max-width: 860px; }
+.overlay-box.wide { max-width: 960px; text-align: left; }
+.overlay-title { color: #f2c230; font-weight: 800; font-size: 20px; margin-bottom: 12px; }
+.overlay-box button { margin-top: 14px; background: #f2a93a; border: none; color: #1a1a22; font-weight: 800; font-size: 16px; padding: 11px 26px; border-radius: 9px; cursor: pointer; }
+.overlay-box button:hover { background: #ffd23a; }
+.passed-big { color: #4ae87a; font-size: 40px; font-weight: 900; letter-spacing: 2px; }
+#passed-title { font-size: 22px; font-weight: 800; margin-top: 6px; }
+#passed-reward { color: #ffd23a; font-size: 22px; font-weight: 800; margin-top: 6px; }
+#passed-unlock { color: #b9becd; margin-top: 6px; }
+.game-title { font-size: 64px; font-weight: 900; letter-spacing: 4px; color: #f2c230; text-shadow: 0 4px 0 #7a4a10; }
+.game-sub { font-size: 17px; color: #dfe3ee; margin-top: 4px; }
+.controls { font-size: 14px; color: #b9becd; margin-top: 16px; line-height: 1.7; }
+.map-cols { display: flex; gap: 18px; }
+#map-canvas { border: 2px solid #3a3f5a; border-radius: 8px; }
+.map-mission { font-size: 15px; padding: 3px 0; color: #b9becd; }
+.map-mission.done { color: #4ae87a; }
+.map-mission.active { color: #ffd23a; font-weight: 800; }
+#map-stats { margin-top: 14px; font-size: 14px; line-height: 1.7; color: #dfe3ee; }
+#wheel-items { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 12px 0; }
+.wheel-item { border: 2px solid #3a3f5a; border-radius: 10px; padding: 12px 16px; cursor: pointer; min-width: 110px; }
+.wheel-item.active { border-color: #ffd23a; background: #3a2f10; }
+.wheel-item.locked { opacity: 0.45; }
+.garage-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; text-align: left; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.garage-row span { color: #b9becd; font-size: 13px; }
